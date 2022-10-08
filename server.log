@@ -30,3 +30,25 @@
 12:50:26 GET /news/1 PostmanRuntime/7.29.2
 12:50:55 GET /news?id=1 PostmanRuntime/7.29.2
 12:57:22 GET /news?id=1 PostmanRuntime/7.29.2
+14:28:48 GET / Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36
+14:28:48 GET /favicon.ico Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36
+14:28:58 GET /news PostmanRuntime/7.29.2
+14:29:20 GET /news?id=2 PostmanRuntime/7.29.2
+14:29:45 GET /news?id=2 PostmanRuntime/7.29.2
+14:30:10 GET /news?id=2 PostmanRuntime/7.29.2
+14:30:37 GET /news?id=2 PostmanRuntime/7.29.2
+14:32:53 GET /newsparams?id=2 PostmanRuntime/7.29.2
+14:33:9 GET /news?id=2 PostmanRuntime/7.29.2
+14:34:17 GET /news?id=%222%22 PostmanRuntime/7.29.2
+14:37:42 GET /news/?id=%222%22 PostmanRuntime/7.29.2
+14:37:58 GET /news/params?id=%222%22 PostmanRuntime/7.29.2
+14:38:2 GET /news/param?id=%222%22 PostmanRuntime/7.29.2
+14:38:26 GET /news/1 PostmanRuntime/7.29.2
+14:38:28 GET /news/2 PostmanRuntime/7.29.2
+14:38:30 GET /news/1 PostmanRuntime/7.29.2
+14:38:57 GET /news/1 PostmanRuntime/7.29.2
+14:39:24 GET /news/1 PostmanRuntime/7.29.2
+14:39:36 GET /news?id=2 PostmanRuntime/7.29.2
+14:39:39 GET /news?id=2 PostmanRuntime/7.29.2
+14:39:43 GET /news/2 PostmanRuntime/7.29.2
+14:39:45 GET /news/1 PostmanRuntime/7.29.2

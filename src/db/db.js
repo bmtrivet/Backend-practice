@@ -61,7 +61,7 @@ const getAllNews = (req, res) => {
 };
 
 const getNewsById = (req, res) => {
-  const { id } = parseInt(req.params);
+  const id = parseInt(req.params.id);
   pool.query("SELECT * FROM news WHERE id = $1", [id], (error, result) => {
     if (error) {
       throw new Error(error);
