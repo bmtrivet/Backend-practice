@@ -1,7 +1,8 @@
 const express = require("express");
 const fs = require("fs");
-
+const db = require("./src/db/db");
 const app = express();
+const bodyParser = require("body-parser");
 
 app.use((request, response, next) => {
   const now = new Date();
@@ -16,12 +17,19 @@ app.use((request, response, next) => {
   next();
 });
 
+app.use(bodyParser.json());
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
+
 app.get("/", (req, res) => {
   res.send("<h1>Hello world</h1>");
 });
 
-app.get("/about", (req, res) => {
-  res.send("<h1>About</h1>");
-});
+app.get("/news", db.getAllNews);
+app.get("/news/:id", db.getNewsById);
+app.post("/news", db.createNews);
 
 app.listen(3000);
