@@ -32,4 +32,4 @@ app.get("/news", db.getAllNews);
 app.get("/news/:id", db.getNewsById);
 app.post("/news", db.createNews);
 
-app.listen(3000);
+app.listen(process.env.PORT || 5000);

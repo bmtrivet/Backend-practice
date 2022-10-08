@@ -30,7 +30,7 @@ const execute = async (query) => {
 };
 
 execute(
-  `CREATE TABLE IF NOT EXISTS "users" ("id" SERIAL,"name" VARCHAR(100) NOT NULL,"role" VARCHAR(15) NOT NULL,PRIMARY KEY ("id"));`
+  `CREATE TABLE IF NOT EXISTS "news" ("id" SERIAL,"title" VARCHAR(250) NOT NULL,"description" TEXT NOT NULL,PRIMARY KEY ("id"));`
 ).then((result) => {
   if (result) {
     console.log("Table created");
