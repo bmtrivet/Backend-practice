@@ -24,8 +24,6 @@ const execute = async (query) => {
   } catch (error) {
     console.error(error.stack);
     return false;
-  } finally {
-    await pool.end(); // closes connection
   }
 };
 
