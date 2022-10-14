@@ -1,8 +1,18 @@
 const express = require("express");
-const fs = require("fs");
-const db = require("./src/db/db");
 const app = express();
-const bodyParser = require("body-parser");
+const cors = require("cors");
+const fs = require("fs");
+const news = require("./src/models/newsModel.js");
+const Database = require("./src/db/db.js");
+
+const db = Database.Database.getInstance();
+db.execute(
+  `CREATE TABLE IF NOT EXISTS "news" ("id" SERIAL,"title" VARCHAR(250) NOT NULL,"description" TEXT NOT NULL,PRIMARY KEY ("id"));`
+).then((result) => {
+  if (result) {
+    console.log("Table created");
+  }
+});
 
 app.use((request, response, next) => {
   const now = new Date();
@@ -17,19 +27,9 @@ app.use((request, response, next) => {
   next();
 });
 
-app.use(bodyParser.json());
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-);
+app.use(express.json());
+app.use(cors());
 
-app.get("/", (req, res) => {
-  res.send("<h1>Hello world</h1>");
-});
-
-app.get("/news", db.getAllNews);
-app.get("/news/:id", db.getNewsById);
-app.post("/news", db.createNews);
+app.use("/", news.router);
 
 app.listen(process.env.PORT || 5000);
