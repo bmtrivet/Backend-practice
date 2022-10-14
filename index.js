@@ -14,7 +14,6 @@ const start = async () => {
   try {
     await sequelize.authenticate();
     await sequelize.sync();
-    app.listen(process.env.PORT || 5000);
   } catch (error) {}
 };
 
@@ -27,3 +26,5 @@ app.use("/api", router);
 app.use(errorHandler);
 
 start();
+
+app.listen(process.env.PORT || 5000);
