@@ -1,35 +1,29 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const fs = require("fs");
-const news = require("./src/models/newsModel.js");
-const Database = require("./src/db/db.js");
+const sequelize = require("./db");
+const fileUpload = require("express-fileupload");
+const path = require("path");
 
-const db = Database.Database.getInstance();
-db.execute(
-  `CREATE TABLE IF NOT EXISTS "news" ("id" SERIAL,"title" VARCHAR(250) NOT NULL,"description" TEXT NOT NULL,PRIMARY KEY ("id"));`
-).then((result) => {
-  if (result) {
-    console.log("Table created");
-  }
-});
+const models = require("./src/models/models");
+const router = require("./src/routes/index");
+const errorHandler = require("./src/middleware/ErrorHandlingMiddleware");
 
-app.use((request, response, next) => {
-  const now = new Date();
-  const hour = now.getHours();
-  const minutes = now.getMinutes();
-  const seconds = now.getSeconds();
-  const data = `${hour}:${minutes}:${seconds} ${request.method} ${
-    request.url
-  } ${request.get("user-agent")}`;
-  console.log(data);
-  fs.appendFile("server.log", data + "\n", function () {});
-  next();
-});
+const start = async () => {
+  try {
+    await sequelize.authenticate();
+    await sequelize.sync();
+    app.listen(process.env.PORT || 5000);
+  } catch (error) {}
+};
 
 app.use(express.json());
+app.use(express.static(path.resolve(__dirname, "./src", "static")));
+app.use(fileUpload({}));
 app.use(cors());
+app.use("/api", router);
 
-app.use("/", news.router);
+app.use(errorHandler);
 
-app.listen(process.env.PORT || 5000);
+start();
